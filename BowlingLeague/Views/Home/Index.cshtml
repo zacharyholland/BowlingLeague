@@ -34,13 +34,18 @@
                 <td>@b.BowlerZip</td>
                 <td>@b.BowlerPhoneNumber</td>
                 <td>@b.Team.TeamName</td>
-                <td><a class="btn btn-sm btn-primary">Edit</a></td>
-                <td><a class="btn btn-sm btn-danger">Delete</a></td>
+                <td><a class="btn btn-sm btn-primary" asp-action="Edit" asp-route-bowlerid="@b.BowlerID">Edit</a></td>
+                <td><a class="btn btn-sm btn-danger" asp-action="Delete" asp-route-bowlerid="@b.BowlerID">Delete</a></td>
 
             </tr>
         }
 
-
     </tbody>
 
+</table>
+
+<table class="table table-sm table-bordered table-striped">
+    <tr>
+        <td><a asp-controller="Home" asp-action="CreateBowler" class="btn btn-primary btn-block">Add New Bowler</a></td>
+    </tr>
 </table>
