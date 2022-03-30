@@ -1,20 +1,29 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System.Linq;
+using BowlingLeague.Models;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
 namespace BowlingLeague.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private IBowlingRepository _repo { get; set; }
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(IBowlingRepository temp)
         {
-            _logger = logger;
+            _repo = temp;
         }
 
-        public IActionResult Index()
+        public IActionResult Index(string teamName)
         {
-            return View();
+            var x = _repo.Bowlers
+                .Include(b => b.Team)
+                .Where(b => b.Team.TeamName == teamName || teamName == null)
+                .OrderBy(b => b.Team.TeamName)
+                .ToList();
+
+            return View(x);
         }
     }
 }

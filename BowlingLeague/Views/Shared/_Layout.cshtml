@@ -21,18 +21,27 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
                     </ul>
                 </div>
             </div>
         </nav>
     </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
+
+    <div class="row m-1 p-1">
+
+        <div id="teams" class="col-3">
+            <vc:teams></vc:teams>
+        </div>
+
+        <div class="col-9">
+            <div id="label">
+                <h1 class="text-center"><vc:label></vc:label></h1>
+            </div>
+            <div>
+                @RenderBody()
+            </div>
+        </div>
+
     </div>
 
     <footer class="border-top footer text-muted">
